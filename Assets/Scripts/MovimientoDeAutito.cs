@@ -16,21 +16,34 @@ public class MovimientoDeAutito : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //MOVIMIENTO
-        FuerzaMovimiento += transform.forward * VelocidadMovimiento * Input.GetAxis("Vertical") * Time.deltaTime;
-        transform.position += FuerzaMovimiento * Time.deltaTime;
+        //DRAG
+        FuerzaMovimiento *= Drag;
+        FuerzaMovimiento = Vector3.ClampMagnitude(FuerzaMovimiento, VelocidadMaxima);
 
         //Direccion
         float steerInput = Input.GetAxis("Horizontal");
         transform.Rotate(Vector3.up * steerInput * FuerzaMovimiento.magnitude * AnguloDireccion * Time.deltaTime);
 
-        //DRAG
-        FuerzaMovimiento *= Drag;
-        FuerzaMovimiento = Vector3.ClampMagnitude(FuerzaMovimiento, VelocidadMaxima);
-
-        //TRACCION
         Debug.DrawRay(transform.position, FuerzaMovimiento * 3);
         Debug.DrawRay(transform.position, transform.forward * 3, Color.blue);
-        FuerzaMovimiento = Vector3.Lerp(FuerzaMovimiento.normalized, transform.forward, Traccion * Time.deltaTime) * FuerzaMovimiento.magnitude;
+
     }
+
+    public void Aceleracion(InputAction.CallbackContext context)
+    {
+        //MOVIMIENTO
+        if (context.performed)
+        {
+            FuerzaMovimiento += transform.forward * VelocidadMovimiento * Input.GetAxis("Vertical") * Time.deltaTime;
+            transform.position += FuerzaMovimiento * Time.deltaTime;
+
+            //TRACCION
+           
+            FuerzaMovimiento = Vector3.Lerp(FuerzaMovimiento.normalized, transform.forward, Traccion * Time.deltaTime) * FuerzaMovimiento.magnitude;
+
+        }
+
+    }
+
+
 }

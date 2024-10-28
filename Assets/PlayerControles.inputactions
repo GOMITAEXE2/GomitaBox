@@ -105,7 +105,7 @@
                 {
                     "name": "Adelate/Atras Keyboard",
                     "id": "b05e9ae5-bd97-40d9-b76d-fb93326d5e23",
-                    "path": "1DAxis",
+                    "path": "1DAxis(whichSideWins=1)",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
