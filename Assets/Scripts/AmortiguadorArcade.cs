@@ -1,53 +1,52 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class AmortiguadorArcade : MonoBehaviour
 {
-    public Transform[] wheelTransforms;   // Transform para cada rueda
-    public float springStrength = 1500f;  // Fuerza de resorte de la suspensión
-    public float damping = 100f;          // Fuerza de amortiguación
-    public float restLength = 0.3f;       // Altura de reposo de la suspensión
-    public float maxCompressionDistance = 0.2f;  // Máxima compresión
-    public float maxSuspensionForce = 3000f;     // Límite de fuerza
+    // Lista de objetos que simulan los puntos de suspensión
+    [SerializeField]
+    private List<Transform> suspensionPoints;
 
-    private Rigidbody rb;
+    // Fuerza de repulsión que cada punto aplicará hacia arriba en el objeto contenedor
+    public float upwardForce = 10f;
+
+    // Fuerza de repulsión que el objeto contenedor aplicará hacia abajo para balancear
+    public float downwardForce = 10f;
+
+    private Rigidbody rb; // Rigidbody del objeto contenedor
 
     void Start()
     {
+        // Obtener el Rigidbody del objeto contenedor
         rb = GetComponent<Rigidbody>();
-        rb.centerOfMass = new Vector3(0, -0.5f, 0);
+        if (rb == null)
+        {
+            Debug.LogError("El objeto contenedor necesita un Rigidbody.");
+        }
     }
 
     void FixedUpdate()
     {
-        Vector3 totalSuspensionForce = Vector3.zero; // Acumula fuerza total
-
-        foreach (Transform wheel in wheelTransforms)
+        // Aplicar fuerza hacia arriba en el objeto contenedor desde cada punto de suspensión
+        foreach (Transform suspensionPoint in suspensionPoints)
         {
-            totalSuspensionForce += ApplySuspensionForce(wheel);
+            if (rb != null)
+            {
+                // Crear una fuerza hacia arriba desde la posición de cada punto de suspensión
+                Vector3 upwardRepulsion = Vector3.up * upwardForce;
+                rb.AddForceAtPosition(upwardRepulsion, suspensionPoint.position, ForceMode.Force);
+            }
+            else
+            {
+                Debug.LogWarning("El objeto contenedor no tiene Rigidbody.");
+            }
         }
 
-        // Aplica la fuerza total al chasis en el centro de masa
-        rb.AddForce(totalSuspensionForce);
-    }
-
-    Vector3 ApplySuspensionForce(Transform wheel)
-    {
-        Ray ray = new Ray(wheel.position, -wheel.up);
-        RaycastHit hit;
-
-        if (Physics.Raycast(ray, out hit, restLength + maxCompressionDistance))
+        // Aplicar fuerza hacia abajo en el objeto contenedor para balancear
+        if (rb != null)
         {
-            float compressionRatio = Mathf.Clamp01((restLength - hit.distance) / maxCompressionDistance);
-            float springForce = springStrength * compressionRatio;
-
-            Vector3 relativeVelocity = rb.GetPointVelocity(wheel.position);
-            float damperForce = damping * Vector3.Dot(relativeVelocity, wheel.up);
-
-            Vector3 suspensionForce = Mathf.Clamp(springForce - damperForce, 0, maxSuspensionForce) * wheel.up;
-
-            return suspensionForce; // Devuelve la fuerza calculada para la rueda
+            Vector3 downwardRepulsion = Vector3.down * downwardForce;
+            rb.AddForce(downwardRepulsion, ForceMode.Force);
         }
-
-        return Vector3.zero; // Si no hay colisión, no se aplica fuerza
     }
 }
