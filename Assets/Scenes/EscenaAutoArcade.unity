@@ -265,8 +265,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 134971980}
+  - component: {fileID: 134971981}
   - component: {fileID: 134971982}
-  - component: {fileID: 134971983}
   m_Layer: 0
   m_Name: AutitoArcade
   m_TagString: Untagged
@@ -288,10 +288,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1880770909}
-  - {fileID: 1763183534}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &134971982
+--- !u!54 &134971981
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -318,7 +317,7 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &134971983
+--- !u!114 &134971982
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -335,11 +334,11 @@ MonoBehaviour:
   - {fileID: 1072721095}
   - {fileID: 698313130}
   - {fileID: 1646286993}
-  springStrength: 5000
-  damping: 150
-  restLength: 0.5
+  springStrength: 1500
+  damping: 100
+  restLength: 0.3
   maxCompressionDistance: 0.2
-  maxSuspensionForce: 5000
+  maxSuspensionForce: 3000
 --- !u!1 &292363841
 GameObject:
   m_ObjectHideFlags: 0
@@ -990,15 +989,15 @@ Transform:
   m_GameObject: {fileID: 1763183533}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.6, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: -0.54, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 125227667}
   - {fileID: 1072721095}
   - {fileID: 698313130}
   - {fileID: 1646286993}
-  m_Father: {fileID: 134971980}
+  m_Father: {fileID: 1880770909}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1880770905
 GameObject:
@@ -1103,7 +1102,8 @@ Transform:
   m_LocalPosition: {x: -0, y: 1.14, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 2}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1763183534}
   m_Father: {fileID: 134971980}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &1880770910
