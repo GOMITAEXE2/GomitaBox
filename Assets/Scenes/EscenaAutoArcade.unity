@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 125227667}
   - component: {fileID: 125227672}
   m_Layer: 0
-  m_Name: RuedaDI
+  m_Name: a0l
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -165,24 +165,24 @@ WheelCollider:
   m_Center: {x: 0, y: 0, z: 0}
   m_Radius: 0.5
   m_SuspensionSpring:
-    spring: 35000
-    damper: 4500
+    spring: 10733.438
+    damper: 12037.501
     targetPosition: 0.5
-  m_SuspensionDistance: 0.3
-  m_ForceAppPointDistance: 0
-  m_Mass: 5
+  m_SuspensionDistance: 0.68547475
+  m_ForceAppPointDistance: 1.04
+  m_Mass: 20
   m_WheelDampingRate: 0.25
   m_ForwardFriction:
     m_ExtremumSlip: 0.4
     m_ExtremumValue: 1
-    m_AsymptoteSlip: 0.6
+    m_AsymptoteSlip: 0.8
     m_AsymptoteValue: 0.5
     m_Stiffness: 1
   m_SidewaysFriction:
-    m_ExtremumSlip: 0.4
+    m_ExtremumSlip: 0.2
     m_ExtremumValue: 1
-    m_AsymptoteSlip: 0.6
-    m_AsymptoteValue: 0.5
+    m_AsymptoteSlip: 0.5
+    m_AsymptoteValue: 0.75
     m_Stiffness: 1
   m_IncludeLayers:
     serializedVersion: 2
@@ -202,7 +202,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 134971980}
-  - component: {fileID: 134971981}
   m_Layer: 0
   m_Name: AutitoArcade
   m_TagString: Untagged
@@ -226,28 +225,6 @@ Transform:
   - {fileID: 1880770909}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &134971981
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 134971979}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5cce62bc46b28ac49945c09731440a53, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  frontLeftWheel: {fileID: 125227672}
-  frontRightWheel: {fileID: 1072721101}
-  rearLeftWheel: {fileID: 1646286999}
-  rearRightWheel: {fileID: 698313136}
-  frontLeftTransform: {fileID: 125227667}
-  frontRightTransform: {fileID: 1072721095}
-  rearLeftTransform: {fileID: 1646286993}
-  rearRightTransform: {fileID: 698313130}
-  maxMotorTorque: 1500
-  maxSteeringAngle: 30
 --- !u!1 &292363841
 GameObject:
   m_ObjectHideFlags: 0
@@ -466,7 +443,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -4.3428, z: 0}
-  m_LocalScale: {x: 15, y: 8.78557, z: 15}
+  m_LocalScale: {x: 40, y: 8, z: 40}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -619,7 +596,7 @@ GameObject:
   - component: {fileID: 698313130}
   - component: {fileID: 698313136}
   m_Layer: 0
-  m_Name: RuedaTD
+  m_Name: a1r
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -651,24 +628,24 @@ WheelCollider:
   m_Center: {x: 0, y: 0, z: 0}
   m_Radius: 0.5
   m_SuspensionSpring:
-    spring: 35000
-    damper: 4500
+    spring: 10733.437
+    damper: 12037.498
     targetPosition: 0.5
-  m_SuspensionDistance: 0.3
-  m_ForceAppPointDistance: 0
-  m_Mass: 5
+  m_SuspensionDistance: 0.68547475
+  m_ForceAppPointDistance: 1.04
+  m_Mass: 20
   m_WheelDampingRate: 0.25
   m_ForwardFriction:
     m_ExtremumSlip: 0.4
     m_ExtremumValue: 1
-    m_AsymptoteSlip: 0.6
+    m_AsymptoteSlip: 0.8
     m_AsymptoteValue: 0.5
     m_Stiffness: 1
   m_SidewaysFriction:
-    m_ExtremumSlip: 0.4
+    m_ExtremumSlip: 0.2
     m_ExtremumValue: 1
-    m_AsymptoteSlip: 0.6
-    m_AsymptoteValue: 0.5
+    m_AsymptoteSlip: 0.5
+    m_AsymptoteValue: 0.75
     m_Stiffness: 1
   m_IncludeLayers:
     serializedVersion: 2
@@ -690,7 +667,7 @@ GameObject:
   - component: {fileID: 1072721095}
   - component: {fileID: 1072721101}
   m_Layer: 0
-  m_Name: RuedaDD
+  m_Name: a0r
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -722,24 +699,24 @@ WheelCollider:
   m_Center: {x: 0, y: 0, z: 0}
   m_Radius: 0.5
   m_SuspensionSpring:
-    spring: 35000
-    damper: 4500
+    spring: 10733.437
+    damper: 12037.498
     targetPosition: 0.5
-  m_SuspensionDistance: 0.3
-  m_ForceAppPointDistance: 0
-  m_Mass: 5
+  m_SuspensionDistance: 0.68547475
+  m_ForceAppPointDistance: 1.04
+  m_Mass: 20
   m_WheelDampingRate: 0.25
   m_ForwardFriction:
     m_ExtremumSlip: 0.4
     m_ExtremumValue: 1
-    m_AsymptoteSlip: 0.6
+    m_AsymptoteSlip: 0.8
     m_AsymptoteValue: 0.5
     m_Stiffness: 1
   m_SidewaysFriction:
-    m_ExtremumSlip: 0.4
+    m_ExtremumSlip: 0.2
     m_ExtremumValue: 1
-    m_AsymptoteSlip: 0.6
-    m_AsymptoteValue: 0.5
+    m_AsymptoteSlip: 0.5
+    m_AsymptoteValue: 0.75
     m_Stiffness: 1
   m_IncludeLayers:
     serializedVersion: 2
@@ -761,7 +738,7 @@ GameObject:
   - component: {fileID: 1646286993}
   - component: {fileID: 1646286999}
   m_Layer: 0
-  m_Name: RuedaTI
+  m_Name: a1l
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -793,24 +770,24 @@ WheelCollider:
   m_Center: {x: 0, y: 0, z: 0}
   m_Radius: 0.5
   m_SuspensionSpring:
-    spring: 35000
-    damper: 4500
+    spring: 10733.438
+    damper: 12037.501
     targetPosition: 0.5
-  m_SuspensionDistance: 0.3
-  m_ForceAppPointDistance: 0
-  m_Mass: 5
+  m_SuspensionDistance: 0.68547475
+  m_ForceAppPointDistance: 1.04
+  m_Mass: 20
   m_WheelDampingRate: 0.25
   m_ForwardFriction:
     m_ExtremumSlip: 0.4
     m_ExtremumValue: 1
-    m_AsymptoteSlip: 0.6
+    m_AsymptoteSlip: 0.8
     m_AsymptoteValue: 0.5
     m_Stiffness: 1
   m_SidewaysFriction:
-    m_ExtremumSlip: 0.4
+    m_ExtremumSlip: 0.2
     m_ExtremumValue: 1
-    m_AsymptoteSlip: 0.6
-    m_AsymptoteValue: 0.5
+    m_AsymptoteSlip: 0.5
+    m_AsymptoteValue: 0.75
     m_Stiffness: 1
   m_IncludeLayers:
     serializedVersion: 2
@@ -869,6 +846,8 @@ GameObject:
   - component: {fileID: 1880770907}
   - component: {fileID: 1880770906}
   - component: {fileID: 1880770910}
+  - component: {fileID: 1880770912}
+  - component: {fileID: 1880770913}
   m_Layer: 0
   m_Name: Chasis
   m_TagString: Untagged
@@ -990,6 +969,44 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1880770912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1880770905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d07e3274243c926419a025497e9f2f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  naturalFrequency: 5.35
+  dampingRatio: 3
+  forceShift: 0
+  setSuspensionDistance: 1
+--- !u!114 &1880770913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1880770905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d591a28ab64172e47acd6364dcc00aa4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxAngle: 30
+  maxTorque: 3000
+  brakeTorque: 40000
+  wheelShape: {fileID: 570148773069247833, guid: 5ef6ab8a2362f7b40a428c0661319b86,
+    type: 3}
+  WheelPosition: {x: 0, y: 0, z: 0.70710677, w: 0.70710677}
+  criticalSpeed: 5
+  stepsBelow: 5
+  stepsAbove: 1
+  driveType: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
