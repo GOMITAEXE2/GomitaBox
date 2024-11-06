@@ -3,50 +3,48 @@ using UnityEngine;
 
 public class AmortiguadorArcade : MonoBehaviour
 {
-    // Lista de objetos que simulan los puntos de suspensión
-    [SerializeField]
-    private List<Transform> suspensionPoints;
+    [Header("Referencias")]
+    [Tooltip("Esto referencia el Rigidboody del auto")]
+    [SerializeField] private Rigidbody CarRb;
+    [Tooltip("Esto referencia los puntos de amortiguacion que tendra el auto utilizando un transform")]
+    [SerializeField] private Transform[] PuntosDeAmortiguacion;
+    [Tooltip("Layer donde el auto va a poder manejarse")]
+    [SerializeField] private LayerMask Manejable;
 
-    // Fuerza de repulsión que cada punto aplicará hacia arriba en el objeto contenedor
-    public float upwardForce = 10f;
+    [Header("Suspencion Setings")]
+    [SerializeField] private float ResorteRigidez;
+    [SerializeField] private float DuracionDescanso;
+    [SerializeField] private float ViajeResorte;
+    [SerializeField] private float RadioDeRueda;
 
-    // Fuerza de repulsión que el objeto contenedor aplicará hacia abajo para balancear
-    public float downwardForce = 10f;
-
-    private Rigidbody rb; // Rigidbody del objeto contenedor
-
-    void Start()
+    private void Start()
     {
-        // Obtener el Rigidbody del objeto contenedor
-        rb = GetComponent<Rigidbody>();
-        if (rb == null)
-        {
-            Debug.LogError("El objeto contenedor necesita un Rigidbody.");
-        }
+        CarRb = GetComponent<Rigidbody>();
     }
 
-    void FixedUpdate()
+    private void Suspencion()
     {
-        // Aplicar fuerza hacia arriba en el objeto contenedor desde cada punto de suspensión
-        foreach (Transform suspensionPoint in suspensionPoints)
+        foreach (Transform rayPoint in PuntosDeAmortiguacion)
         {
-            if (rb != null)
+            RaycastHit hit;
+            float maximoDescanso = DuracionDescanso * ViajeResorte;
+            if (Physics.Raycast(rayPoint.position, -rayPoint.up, out hit, maximoDescanso + RadioDeRueda, Manejable))
             {
-                // Crear una fuerza hacia arriba desde la posición de cada punto de suspensión
-                Vector3 upwardRepulsion = Vector3.up * upwardForce;
-                rb.AddForceAtPosition(upwardRepulsion, suspensionPoint.position, ForceMode.Force);
+                float resorteLongitudActual = hit.distance - RadioDeRueda;
+                float comprecionResorte = (DuracionDescanso - resorteLongitudActual) / ViajeResorte;
+
+                float fuerzaResorte = ResorteRigidez * comprecionResorte;
+
+                CarRb.AddForceAtPosition(fuerzaResorte * rayPoint.up, rayPoint.position);
+
+                Debug.DrawLine(rayPoint.position, hit.point, Color.blue);
             }
             else
             {
-                Debug.LogWarning("El objeto contenedor no tiene Rigidbody.");
+
             }
         }
+       
 
-        // Aplicar fuerza hacia abajo en el objeto contenedor para balancear
-        if (rb != null)
-        {
-            Vector3 downwardRepulsion = Vector3.down * downwardForce;
-            rb.AddForce(downwardRepulsion, ForceMode.Force);
-        }
     }
 }
