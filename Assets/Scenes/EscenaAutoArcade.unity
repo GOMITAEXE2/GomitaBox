@@ -1080,7 +1080,7 @@ GameObject:
   m_Component:
   - component: {fileID: 698313130}
   m_Layer: 0
-  m_Name: R
+  m_Name: RR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2309,8 +2309,7 @@ GameObject:
   - component: {fileID: 1880770907}
   - component: {fileID: 1880770906}
   - component: {fileID: 1880770910}
-  - component: {fileID: 1880770912}
-  - component: {fileID: 1880770913}
+  - component: {fileID: 1880770911}
   m_Layer: 0
   m_Name: Chasis
   m_TagString: Untagged
@@ -2432,7 +2431,7 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &1880770912
+--- !u!114 &1880770911
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2441,35 +2440,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 1880770905}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d07e3274243c926419a025497e9f2f52, type: 3}
+  m_Script: {fileID: 11500000, guid: cfcfa489653511b40a628574b2fd3ba1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  naturalFrequency: 5.35
-  dampingRatio: 3
-  forceShift: 0
-  setSuspensionDistance: 1
---- !u!114 &1880770913
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1880770905}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d591a28ab64172e47acd6364dcc00aa4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxAngle: 30
-  maxTorque: 900
-  brakeTorque: 100000
-  wheelShape: {fileID: 570148773069247833, guid: 5ef6ab8a2362f7b40a428c0661319b86,
-    type: 3}
-  WheelPosition: {x: 0, y: 0, z: 0.70710677, w: 0.70710677}
-  criticalSpeed: 5
-  stepsBelow: 5
-  stepsAbove: 1
-  driveType: 0
+  CarRb: {fileID: 0}
+  PuntosDeAmortiguacion: []
+  Manejable:
+    serializedVersion: 2
+    m_Bits: 0
+  ResorteRigidez: 0
+  DuracionDescanso: 0
+  ViajeResorte: 0
+  RadioDeRueda: 0
 --- !u!1 &2094865784
 GameObject:
   m_ObjectHideFlags: 0
