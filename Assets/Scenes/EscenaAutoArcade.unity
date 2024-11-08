@@ -715,8 +715,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 477527543}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.736, y: 1.314, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -724,7 +724,7 @@ Transform:
   - {fileID: 411875554}
   - {fileID: 776962044}
   - {fileID: 1456442903}
-  m_Father: {fileID: 7676792946163410626}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &505895648
 GameObject:
@@ -1103,6 +1103,37 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 477527544}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &783560303
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 783560304}
+  m_Layer: 0
+  m_Name: PuntoDeAceleracion
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &783560304
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 783560303}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.25, y: 0.25, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7676792946163410626}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &823187867
 GameObject:
@@ -2539,7 +2570,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 855582405}
-  - {fileID: 477527544}
+  - {fileID: 783560304}
   m_Father: {fileID: 7676792946163410624}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &7676792946163410628
@@ -3006,7 +3037,7 @@ Rigidbody:
   serializedVersion: 4
   m_Mass: 2000
   m_Drag: 1
-  m_AngularDrag: 0.05
+  m_AngularDrag: 10
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
   m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -3036,7 +3067,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CarRb: {fileID: 7676792946166802151}
-  PuntosDeAmortiguacion:
+  rayPoints:
   - {fileID: 1116841182}
   - {fileID: 411875554}
   - {fileID: 776962044}
@@ -3044,11 +3075,52 @@ MonoBehaviour:
   Manejable:
     serializedVersion: 2
     m_Bits: 64
+  PuntoDeAceleracion: {fileID: 783560304}
   ResorteRigidez: 3000
   PistonRigidez: 300
   DuracionDescanso: 1
   ViajeResorte: 0.5
   RadioDeRueda: 0.2
+  moveInput: 0
+  streetInput: 0
+  Aceleracion: 25
+  VelocidadMaxima: 100
+  Desaceleracion: 10
+  FuerzaDireccion: 30
+  DoblarAnimation:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.18651558
+      value: 0.80059355
+      inSlope: 1.5297298
+      outSlope: 1.5297298
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  CoefficienteDeAgarre: 1
 --- !u!33 &7676792946166802154
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -3063,6 +3135,7 @@ SceneRoots:
   m_Roots:
   - {fileID: 292363843}
   - {fileID: 505895652}
+  - {fileID: 477527544}
   - {fileID: 687946799}
   - {fileID: 1175998603}
   - {fileID: 7676792946163410624}

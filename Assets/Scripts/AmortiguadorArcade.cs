@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using System.Data;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class AmortiguadorArcade : MonoBehaviour
@@ -10,6 +12,8 @@ public class AmortiguadorArcade : MonoBehaviour
     [SerializeField] private Transform[] rayPoints;
     [Tooltip("Layer donde el auto va a poder manejarse")]
     [SerializeField] private LayerMask Manejable;
+    [Tooltip("Punto tipo transform que se utiliza para la acelereacion del auto")]
+    [SerializeField] private Transform PuntoDeAceleracion;
 
     [Header("Suspencion Settings")]
     [SerializeField] private float ResorteRigidez;
@@ -29,6 +33,9 @@ public class AmortiguadorArcade : MonoBehaviour
     [SerializeField] private float Aceleracion;
     [SerializeField] private float VelocidadMaxima;
     [SerializeField] private float Desaceleracion;
+    [SerializeField] private float FuerzaDireccion;
+    [SerializeField] private AnimationCurve DoblarAnimation;
+    [SerializeField] private float CoefficienteDeAgarre;
 
     private Vector3 VelocidadActualDelAuto = Vector3.zero;
     private float RatioVelocidadDelAtuo = 0;
@@ -43,6 +50,18 @@ public class AmortiguadorArcade : MonoBehaviour
     {
         Suspencion();
         ChequearSuelo();
+        CalcularVelocidadAuto();
+        MovimientoDeAuto();
+    }
+
+    private void Update()
+    {
+        GetPlayerInput();
+    }
+    private void GetPlayerInput()
+    {
+        moveInput = Input.GetAxis("Vertical");
+        streetInput = Input.GetAxis("Horizontal");
     }
 
     private void ChequearSuelo()
@@ -64,17 +83,54 @@ public class AmortiguadorArcade : MonoBehaviour
 
     }
 
+    private void MovimientoDeAuto()
+    {
+        if (SobreElSuelo)
+        {
+            CalcularAceleracionAuto();
+            CalcularDesaceleracionAuto();
+            Doblar();
+            ArrastreLateral();
+        }
+    }
+
+    private void CalcularAceleracionAuto()
+    {
+        CarRb.AddForceAtPosition(Aceleracion * moveInput * transform.forward, PuntoDeAceleracion.position, ForceMode.Acceleration);
+    }
+    private void CalcularDesaceleracionAuto()
+    {
+        CarRb.AddForceAtPosition(Desaceleracion * moveInput * -transform.forward, PuntoDeAceleracion.position, ForceMode.Acceleration);
+    }
+
+    private void Doblar()
+    {
+        CarRb.AddTorque(FuerzaDireccion * streetInput * DoblarAnimation.Evaluate(RatioVelocidadDelAtuo) * Mathf.Sign(RatioVelocidadDelAtuo) * transform.up, ForceMode.Acceleration);
+    }
+
+    private void ArrastreLateral()
+    {
+        float velocidadLateralActual = VelocidadActualDelAuto.x;
+        float magnitudDeArrastre = velocidadLateralActual * CoefficienteDeAgarre;
+        Vector3 FuerzaDeArrastre = transform.right * magnitudDeArrastre;
+        CarRb.AddForceAtPosition(FuerzaDeArrastre, CarRb.worldCenterOfMass, ForceMode.Acceleration);
+    }
+
+
+
     private void CalcularVelocidadAuto()
     {
-
+        VelocidadActualDelAuto = transform.InverseTransformDirection(CarRb.velocity);
+        RatioVelocidadDelAtuo = VelocidadActualDelAuto.z / VelocidadMaxima;
     }
     
     private void Suspencion()
     {
-        for (int i = 0; 1 < rayPoints.Length; i++)
+        for (int i = 0; i < rayPoints.Length; i++)
         {
             RaycastHit hit;
             float maximoDescanso = DuracionDescanso * ViajeResorte;
+
             if (Physics.Raycast(rayPoints[i].position, -rayPoints[i].up, out hit, maximoDescanso + RadioDeRueda, Manejable))
             {
                 RuedaSobreSuelo[i] = 1;
@@ -100,7 +156,5 @@ public class AmortiguadorArcade : MonoBehaviour
                 Debug.DrawLine(rayPoints[i].position, rayPoints[i].position + (RadioDeRueda + maximoDescanso) * -rayPoints[i].up, Color.green);
             }
         }
-       
-
     }
 }
