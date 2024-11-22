@@ -22,7 +22,7 @@ public class AmortiguadorArcade : MonoBehaviour
     [SerializeField] private float ViajeResorte;
     [SerializeField] private float RadioDeRueda;
 
-    private int[] RuedaSobreSuelo = new int[4];
+    private int[] RuedaSobreSuelo;
     private bool SobreElSuelo = false;
 
     [Header("Input")]
@@ -44,6 +44,7 @@ public class AmortiguadorArcade : MonoBehaviour
     private void Start()
     {
         CarRb = GetComponent<Rigidbody>();
+        RuedaSobreSuelo = new int[rayPoints.Length];
     }
 
     private void FixedUpdate()
