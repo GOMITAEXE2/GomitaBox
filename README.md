@@ -1,2 +1,2 @@
-# DrifteandoAndo-V002
- Un juego sencillo donde dos autitos compiten para ver quien consigue mas putnos drifteando
+# GOMITA BOX
+Un rejunte de diferentes tipos de proyectos e ideas para experimentar 
