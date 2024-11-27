@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Photon.Pun;
 
-public class MovimientoDeAutito : MonoBehaviour
+public class MovimientoDeAutito : MonoBehaviourPunCallbacks
 {
     public float VelocidadMovimiento;
     public float VelocidadMaxima;
@@ -16,9 +17,10 @@ public class MovimientoDeAutito : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (photonView.IsMine)
+        {
+            //MOVIMIENTO
 
-        //MOVIMIENTO
-        
             FuerzaMovimiento += transform.forward * VelocidadMovimiento * Input.GetAxis("Vertical") * Time.deltaTime;
             transform.position += FuerzaMovimiento * Time.deltaTime;
 
@@ -35,11 +37,6 @@ public class MovimientoDeAutito : MonoBehaviour
 
             Debug.DrawRay(transform.position, FuerzaMovimiento * 3);
             Debug.DrawRay(transform.position, transform.forward * 3, Color.blue);
-
+        }
     }
-    //public void aceleracion(inputaction.callbackcontext context)
-    //{
-        
-
-
 }
